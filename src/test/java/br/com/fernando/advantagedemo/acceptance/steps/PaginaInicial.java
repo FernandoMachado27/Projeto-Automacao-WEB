@@ -11,6 +11,7 @@ public class PaginaInicial extends Browser{
 
 	public PaginaInicial() throws InterruptedException {
 		super(null);
+		System.out.println("inicializando");
 		browser.navigate().to(URL_INICIAL);
 		browser.manage().window().maximize();
 		Thread.sleep(4000);
