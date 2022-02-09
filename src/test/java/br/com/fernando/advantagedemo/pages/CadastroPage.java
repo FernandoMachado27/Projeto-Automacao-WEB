@@ -1,22 +1,28 @@
 package br.com.fernando.advantagedemo.pages;
 
+import java.time.Duration;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import br.com.fernando.advantagedemo.Browser;
 
 public class CadastroPage extends Browser{
 
+	private  WebDriverWait wait;
+	
 	public CadastroPage(WebDriver browser) {
 		super(browser); 
+		this.wait = new WebDriverWait(browser, Duration.ofSeconds(10));
 	}
 
 	public void nomeEEmailDoNovoUsuario(String username, String email) {
-		browser.findElement(By.xpath("//*[@id=\"formCover\"]/div[1]/div[1]/sec-view[1]/div/input")).sendKeys(username);
-		browser.findElement(By.xpath("//*[@id=\"formCover\"]/div[1]/div[1]/sec-view[2]/div/input")).sendKeys(email);
+		wait.until(ExpectedConditions.elementToBeClickable(By.name("usernameRegisterPage"))).sendKeys(username);
+		browser.findElement(By.name("emailRegisterPage")).sendKeys(email);
 	}
 
 	public void digiteASenhaEConfirme(String password, String confirmPassword) {

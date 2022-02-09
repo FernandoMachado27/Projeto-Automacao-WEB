@@ -14,6 +14,8 @@ import br.com.fernando.advantagedemo.pages.CadastroPage;
 import br.com.fernando.advantagedemo.pages.PesquisaPage;
 
 public class PaginaInicial extends Browser{
+	
+	private WebDriverWait wait;
 
 	public PaginaInicial() {
 		super(null);
