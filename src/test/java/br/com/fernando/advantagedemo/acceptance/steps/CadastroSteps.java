@@ -11,13 +11,14 @@ import io.cucumber.java.pt.Quando;
 public class CadastroSteps {
 	
 	private PaginaInicial paginaInicial;
+	private LoginPage paginaDeLogin;
 	private CadastroPage paginaDeCadastro;
 	
 	@Dado("o usuario acessa pagina de cadastro")
 	public void o_usuario_acessa_pagina_de_cadastro() throws InterruptedException {
 		this.paginaInicial = new PaginaInicial();
-		this.paginaInicial.acessarPaginaDeCadastro();
-		this.paginaDeCadastro = this.paginaInicial.criarNovoCadastro();
+		this.paginaDeLogin = this.paginaInicial.acessarPaginaDeLogin();
+		this.paginaDeCadastro = this.paginaDeLogin.criarNovoCadastro();
 		
 	}
 
@@ -43,7 +44,6 @@ public class CadastroSteps {
 	@Entao("eh redirecionado para a pagina inicial")
 	public void eh_redirecionado_para_a_pagina_inicial() {
 		Assert.assertTrue(this.paginaDeCadastro.isPaginaInicial());
-//		Assert.assertFalse(this.paginaDeCadastro.isPaginaDeCadastro());
 		this.paginaDeCadastro.fechar();
 	}
 	
