@@ -2,6 +2,9 @@ package br.com.fernando.advantagedemo.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 
 import br.com.fernando.advantagedemo.Browser;
 
@@ -31,7 +34,11 @@ public class CadastroPage extends Browser{
 	}
 
 	public void digiteSeuPaisDeOrigem(String country) {
-		browser.findElement(By.xpath("//*[@id=\"formCover\"]/div[3]/div[1]/sec-view[1]/div/select")).sendKeys(country);
+		WebElement countryList = browser.findElement(By.cssSelector("#formCover > div:nth-child(3) > div:nth-child(2) > sec-view:nth-child(1) > div > select"));
+		countryList.click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#formCover > div:nth-child(3) > div:nth-child(2) > sec-view:nth-child(1) > div > select > option:nth-child(2)")));
+		Select se = new Select(countryList);
+		se.selectByVisibleText(country);
 	}
 
 	public void digiteSuaCidade(String city) {
