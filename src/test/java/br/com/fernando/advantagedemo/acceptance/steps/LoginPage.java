@@ -1,5 +1,6 @@
 package br.com.fernando.advantagedemo.acceptance.steps;
 
+import java.io.IOException;
 import java.time.Duration;
 
 import org.openqa.selenium.By;
@@ -19,7 +20,8 @@ public class LoginPage extends Browser{
 		this.wait = new WebDriverWait(browser, Duration.ofSeconds(10));
 	}
 
-	public CadastroPage criarNovoCadastro() {
+	public CadastroPage criarNovoCadastro() throws IOException, InterruptedException {
+		Thread.sleep(1000);
 		wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("body > login-modal > div > div > div.login.ng-scope > a.create-new-account.ng-scope"))).click();
 		return new CadastroPage(browser);
 	}

@@ -1,5 +1,8 @@
 package br.com.fernando.advantagedemo.pages;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.time.Duration;
 
 import org.openqa.selenium.By;
@@ -8,6 +11,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import br.com.fernando.advantagedemo.Browser;
 
@@ -15,7 +20,13 @@ public class CadastroPage extends Browser{
 
 	private  WebDriverWait wait;
 	
-	public CadastroPage(WebDriver browser) {
+	File file = new File("CadastroComDadosExcel.xlsx");
+	FileInputStream inputStream = new FileInputStream(file);
+	XSSFWorkbook wb = new XSSFWorkbook(inputStream);
+	XSSFSheet sheet = wb.getSheet("Planilha1");
+	int rowCount = sheet.getLastRowNum() - sheet.getFirstRowNum();
+	
+	public CadastroPage(WebDriver browser) throws IOException{
 		super(browser); 
 		this.wait = new WebDriverWait(browser, Duration.ofSeconds(10));
 	}
@@ -85,6 +96,42 @@ public class CadastroPage extends Browser{
 
 	public boolean isPaginaInicial() {
 		return browser.getCurrentUrl().equals(URL_INICIAL);
+	}
+	
+	public void fechar() {
+		this.browser.quit();
+	}
+
+	public void preencheFormularioPeloExcel(int numeroLinha) {
+		WebElement username = wait.until(ExpectedConditions.elementToBeClickable(By.name("usernameRegisterPage")));
+		WebElement email = browser.findElement(By.name("emailRegisterPage"));
+		WebElement password = browser.findElement(By.name("passwordRegisterPage"));
+		WebElement confirmPassword = browser.findElement(By.name("confirm_passwordRegisterPage"));
+		WebElement firstName = browser.findElement(By.name("first_nameRegisterPage"));
+		WebElement lastName = browser.findElement(By.name("last_nameRegisterPage"));
+		WebElement phoneNumber = browser.findElement(By.name("phone_numberRegisterPage"));
+		WebElement countryList = browser.findElement(By.cssSelector("#formCover > div:nth-child(3) > div:nth-child(2) > sec-view:nth-child(1) > div > select"));
+		WebElement city = browser.findElement(By.name("cityRegisterPage"));
+		WebElement address = browser.findElement(By.name("addressRegisterPage"));
+		WebElement state = browser.findElement(By.name("state_/_province_/_regionRegisterPage"));
+		WebElement postalCode = browser.findElement(By.name("postal_codeRegisterPage"));
+		
+		username.sendKeys(sheet.getRow(numeroLinha).getCell(0).getStringCellValue());
+		email.sendKeys(sheet.getRow(numeroLinha).getCell(1).getStringCellValue());
+		password.sendKeys(sheet.getRow(numeroLinha).getCell(2).getStringCellValue());
+		confirmPassword.sendKeys(sheet.getRow(numeroLinha).getCell(3).getStringCellValue());
+		firstName.sendKeys(sheet.getRow(numeroLinha).getCell(4).getStringCellValue());
+		lastName.sendKeys(sheet.getRow(numeroLinha).getCell(5).getStringCellValue());
+		phoneNumber.sendKeys(sheet.getRow(numeroLinha).getCell(6).getStringCellValue());
+		countryList.click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(
+		"#formCover > div:nth-child(3) > div:nth-child(2) > sec-view:nth-child(1) > div > select > option:nth-child(2)")));
+		Select se = new Select(countryList);
+		se.selectByVisibleText(sheet.getRow(numeroLinha).getCell(7).getStringCellValue());
+		city.sendKeys(sheet.getRow(numeroLinha).getCell(8).getStringCellValue());
+		address.sendKeys(sheet.getRow(numeroLinha).getCell(9).getStringCellValue());
+		state.sendKeys(sheet.getRow(numeroLinha).getCell(10).getStringCellValue());
+		postalCode.sendKeys(sheet.getRow(numeroLinha).getCell(11).getStringCellValue());
 	}
 
 }

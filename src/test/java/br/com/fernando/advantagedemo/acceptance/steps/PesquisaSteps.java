@@ -11,6 +11,7 @@ public class PesquisaSteps {
 	
 	private PaginaInicial paginaInicial;
 	private PesquisaPage paginaDePesquisa;
+
 	
 	@Dado("o usuario esta na pagina inicial e acessa a area de pesquisa")
 	public void o_usuario_esta_na_pagina_inicial_e_acessa_a_area_de_pesquisa() {

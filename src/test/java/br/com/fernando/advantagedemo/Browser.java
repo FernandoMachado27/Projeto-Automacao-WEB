@@ -1,12 +1,7 @@
 package br.com.fernando.advantagedemo;
 
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Browser {
 	
@@ -23,16 +18,16 @@ public class Browser {
 		}
 	}
 	
-	public void fechar() {
-		this.browser.quit();
-	}
-	
 	public void acessarPaginaInicial() {
 		this.browser.navigate().to(URL_INICIAL);
 	}
 	
 	public void maximizarTela() {
 		this.browser.manage().window().maximize();
+	}
+	
+	public void fechar() {
+		this.browser.quit();
 	}
 	
 
