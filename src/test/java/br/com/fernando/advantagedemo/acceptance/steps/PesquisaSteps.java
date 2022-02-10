@@ -13,14 +13,14 @@ public class PesquisaSteps {
 	private PesquisaPage paginaDePesquisa;
 	
 	@Dado("o usuario esta na pagina inicial e acessa a area de pesquisa")
-	public void o_usuario_esta_na_pagina_inicial_e_acessa_a_area_de_pesquisa() throws InterruptedException {
+	public void o_usuario_esta_na_pagina_inicial_e_acessa_a_area_de_pesquisa() {
 		this.paginaInicial = new PaginaInicial();
-		this.paginaInicial.acessarAreaDePesquisa();
+		this.paginaDePesquisa = this.paginaInicial.acessarAreaDePesquisa();
 	}
 
 	@Quando("pesquisa um produto")
-	public void pesquisa_um_produto() throws InterruptedException {
-		this.paginaDePesquisa = this.paginaInicial.pesquisarProduto("HP ELITEPAD 1000 G2 TABLET");
+	public void pesquisa_um_produto()  {
+		this.paginaDePesquisa.pesquisarProduto("HP ELITEPAD 1000 G2 TABLET");
 	}
 	
 	@Entao("o produto eh encontrado com sucesso")
@@ -31,8 +31,8 @@ public class PesquisaSteps {
 	}
 	
 	@Quando("pesquisa um produto que nao existe")
-	public void pesquisa_um_produto_que_nao_existe() throws InterruptedException {
-		this.paginaDePesquisa = this.paginaInicial.pesquisarProduto("watch");
+	public void pesquisa_um_produto_que_nao_existe() {
+		this.paginaDePesquisa.pesquisarProdutoInexistente("watch");
 	}
 
 	@Entao("o produto nao eh encontrado")

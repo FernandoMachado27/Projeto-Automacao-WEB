@@ -3,7 +3,6 @@ package br.com.fernando.advantagedemo.acceptance.steps;
 import org.junit.Assert;
 
 import br.com.fernando.advantagedemo.pages.CadastroPage;
-import io.cucumber.java.After;
 import io.cucumber.java.pt.Dado;
 import io.cucumber.java.pt.Entao;
 import io.cucumber.java.pt.Quando;
@@ -15,7 +14,7 @@ public class CadastroSteps {
 	private CadastroPage paginaDeCadastro;
 	
 	@Dado("o usuario acessa pagina de cadastro")
-	public void o_usuario_acessa_pagina_de_cadastro() throws InterruptedException {
+	public void o_usuario_acessa_pagina_de_cadastro() {
 		this.paginaInicial = new PaginaInicial();
 		this.paginaDeLogin = this.paginaInicial.acessarPaginaDeLogin();
 		this.paginaDeCadastro = this.paginaDeLogin.criarNovoCadastro();
@@ -24,7 +23,7 @@ public class CadastroSteps {
 
 	@Quando("preenche o formulario com dados validos")
 	public void preenche_o_formulario_com_dados_validos() {
-		this.paginaDeCadastro.nomeEEmailDoNovoUsuario("Fernando217", "fernando2@testando.com");
+		this.paginaDeCadastro.nomeEEmailDoNovoUsuario("Fernando220", "fernando2@testando.com");
 		this.paginaDeCadastro.digiteASenhaEConfirme("12345aA", "12345aA");
 		this.paginaDeCadastro.digiteNomeESobrenome("Fernando", "Testando");
 		this.paginaDeCadastro.digiteNumeroDeCelular("11999272728");
@@ -37,7 +36,7 @@ public class CadastroSteps {
 	}
 	
 	@Quando("realiza o cadastro")
-	public void realiza_o_cadastro() throws InterruptedException {
+	public void realiza_o_cadastro()  {
 		this.paginaDeCadastro.efetuaCadastro();
 	}
 	
@@ -62,7 +61,7 @@ public class CadastroSteps {
 	}
 
 	@Quando("tenta se logar")
-	public void tenta_se_logar() throws InterruptedException {
+	public void tenta_se_logar() {
 		this.paginaDeCadastro.efetuaCadastro();
 	}
 	
