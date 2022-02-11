@@ -1,5 +1,6 @@
 package br.com.fernando.advantagedemo;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -28,6 +29,11 @@ public class Browser {
 	
 	public void fechar() {
 		this.browser.quit();
+	}
+	
+	public boolean validarNomeDeUsuario() {
+		String nomeUsuario = browser.findElement(By.cssSelector("#menuUserLink > span")).getText();
+		return browser.getPageSource().contains(nomeUsuario);
 	}
 	
 

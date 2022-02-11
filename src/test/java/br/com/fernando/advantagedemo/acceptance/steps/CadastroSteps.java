@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.junit.Assert;
 
 import br.com.fernando.advantagedemo.pages.CadastroPage;
+import br.com.fernando.advantagedemo.pages.LoginPage;
 import io.cucumber.java.pt.Dado;
 import io.cucumber.java.pt.Entao;
 import io.cucumber.java.pt.Quando;
@@ -27,7 +28,7 @@ public class CadastroSteps {
 
 	@Quando("preenche o formulario com dados validos")
 	public void preenche_o_formulario_com_dados_validos() {
-		this.paginaDeCadastro.nomeEEmailDoNovoUsuario("Fernando235", "fernando2@testando.com");
+		this.paginaDeCadastro.nomeEEmailDoNovoUsuario("Fernando240", "fernando2@testando.com");
 		this.paginaDeCadastro.digiteASenhaEConfirme("12345aA", "12345aA");
 		this.paginaDeCadastro.digiteNomeESobrenome("Fernando", "Testando");
 		this.paginaDeCadastro.digiteNumeroDeCelular("11999272728");
@@ -46,7 +47,7 @@ public class CadastroSteps {
 	
 	@Entao("eh redirecionado para a pagina inicial")
 	public void eh_redirecionado_para_a_pagina_inicial() {
-//		Assert.assertTrue(this.paginaDeCadastro.isPaginaInicial());
+		Assert.assertTrue(paginaDeCadastro.validarNomeDeUsuario());
 		this.paginaDeCadastro.fechar();
 	}
 	
@@ -103,6 +104,7 @@ public class CadastroSteps {
 	
 	@Entao("continua na pagina de cadastro com mensagem de username pass e confirmPass invalidos")
 	public void continua_na_pagina_de_cadastro_com_mensagem_de_username_pass_e_confirmPass_invalidos() {
+		Assert.assertTrue(paginaDeCadastro.paginaContemMensagemUserPassEConfirmPassInvalidos());
 		this.paginaDeCadastro.fechar();
 	}
 }

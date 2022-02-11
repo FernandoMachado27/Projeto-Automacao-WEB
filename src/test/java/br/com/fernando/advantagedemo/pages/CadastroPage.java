@@ -134,5 +134,12 @@ public class CadastroPage extends Browser{
 		postalCode.sendKeys(sheet.getRow(numeroLinha).getCell(11).getStringCellValue());
 	}
 
+	public boolean paginaContemMensagemUserPassEConfirmPassInvalidos() {
+		String pageSource = browser.getPageSource(); 
+		return pageSource.contains("Username field is required") 
+				&& pageSource.contains("Password field is required")  
+				&& pageSource.contains("Confirm password field is required");
+	}
+
 }
 	

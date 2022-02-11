@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import br.com.fernando.advantagedemo.Browser;
+import br.com.fernando.advantagedemo.pages.LoginPage;
 import br.com.fernando.advantagedemo.pages.PesquisaPage;
 
 public class PaginaInicial extends Browser{

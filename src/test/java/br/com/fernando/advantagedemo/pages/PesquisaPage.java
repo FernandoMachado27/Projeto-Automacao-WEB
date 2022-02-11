@@ -23,17 +23,17 @@ public class PesquisaPage extends Browser{
 	}
 
 	public boolean mensagemDeProdutoNaoEncontrado() {
-		return browser.getPageSource().contains("No results for \"watch\"");
+		String mensagemProdutoNaoEncontrado = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#searchPage > div.noPromotedProductDiv > div > label > span"))).getText();
+		return browser.getPageSource().contains(mensagemProdutoNaoEncontrado);
 	}
 
 	public boolean isPaginaInicial() {
 		return browser.getCurrentUrl().equals(URL_INICIAL);
 	}
 
-	public void pesquisarProduto(String produtoPesquisado) {
+	public void pesquisarProduto(String produtoPesquisado){
 		browser.findElement(By.id("autoComplete")).sendKeys(produtoPesquisado, Keys.ENTER);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#output > div > div.top6Products > a.product.ng-scope > img")));
-		browser.findElement(By.cssSelector("#output > div > div.top6Products > a.product.ng-scope")).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#\\31 6"))).click();
 	}
 
 	public void pesquisarProdutoInexistente(String produtoInexistente) {
