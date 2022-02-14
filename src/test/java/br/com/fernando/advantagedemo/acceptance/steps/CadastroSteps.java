@@ -28,7 +28,7 @@ public class CadastroSteps {
 
 	@Quando("preenche o formulario com dados validos")
 	public void preenche_o_formulario_com_dados_validos() {
-		this.paginaDeCadastro.nomeEEmailDoNovoUsuario("Fernando240", "fernando2@testando.com");
+		this.paginaDeCadastro.nomeEEmailDoNovoUsuario("Fernando252", "fernando2@testando.com");
 		this.paginaDeCadastro.digiteASenhaEConfirme("12345aA", "12345aA");
 		this.paginaDeCadastro.digiteNomeESobrenome("Fernando", "Testando");
 		this.paginaDeCadastro.digiteNumeroDeCelular("11999272728");
@@ -37,11 +37,11 @@ public class CadastroSteps {
 		this.paginaDeCadastro.digiteSeuEndereco("Estrada São Paulo");
 		this.paginaDeCadastro.digiteSeuEstado("São Paulo");
 		this.paginaDeCadastro.digiteOCodigoPostal("06364000");
-		this.paginaDeCadastro.concordaComOsTermosDeUso("Sim");
+		this.paginaDeCadastro.concordaComOsTermosDeUso(true);
 	}
 	
-	@Quando("realiza o cadastro")
-	public void realiza_o_cadastro()  {
+	@Quando("tenta se logar")
+	public void tenta_se_logar() {
 		this.paginaDeCadastro.efetuaCadastro();
 	}
 	
@@ -64,12 +64,7 @@ public class CadastroSteps {
 		this.paginaDeCadastro.digiteSeuEndereco("Estrada São Paulo");
 		this.paginaDeCadastro.digiteSeuEstado("São Paulo");
 		this.paginaDeCadastro.digiteOCodigoPostal("06364000");
-		this.paginaDeCadastro.concordaComOsTermosDeUso("Sim");
-	}
-
-	@Quando("tenta se logar")
-	public void tenta_se_logar() {
-		this.paginaDeCadastro.efetuaCadastro();
+		this.paginaDeCadastro.concordaComOsTermosDeUso(true);
 	}
 	
 	@Entao("continua na pagina de cadastro com mensagem de email invalido")
@@ -84,6 +79,7 @@ public class CadastroSteps {
 	@Quando("preenche o formulario com dados validos do excel")
 	public void preenche_o_formulario_com_dados_validos_do_excel() {
 		this.paginaDeCadastro.preencheFormularioPeloExcel(1);
+		this.paginaDeCadastro.concordaComOsTermosDeUso(true);
 	}
 	
 	// CADASTRO INVÁLIDO PELO EXCEL
@@ -91,6 +87,7 @@ public class CadastroSteps {
 	@Quando("preenche o formulario com email invalido do excel")
 	public void preenche_o_formulario_com_email_invalido_do_excel() {
 		this.paginaDeCadastro.preencheFormularioPeloExcel(2);
+		this.paginaDeCadastro.concordaComOsTermosDeUso(true);
 	}
 	
 	// CADASTRO PREENCHENDO APENAS CAMPO DE EMAIL
@@ -99,7 +96,7 @@ public class CadastroSteps {
 	public void preenche_apenas_o_campo_de_email() {
 		this.paginaDeCadastro.nomeEEmailDoNovoUsuario(" ", "fernando2@testando.com");
 		this.paginaDeCadastro.digiteASenhaEConfirme(" ", " ");
-		this.paginaDeCadastro.concordaComOsTermosDeUso("Sim");
+		this.paginaDeCadastro.concordaComOsTermosDeUso(true);
 	}
 	
 	@Entao("continua na pagina de cadastro com mensagem de username pass e confirmPass invalidos")

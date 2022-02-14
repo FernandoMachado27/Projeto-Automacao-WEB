@@ -9,7 +9,7 @@ Funcionalidade: Cadastro de Usuario
 	@cadastro_valido
   Cenario: Cadastro completo com sucesso
     Quando preenche o formulario com dados validos
-    E realiza o cadastro
+    E tenta se logar
     Entao eh redirecionado para a pagina inicial
 
 	@cadastro_email_invalido
@@ -21,7 +21,7 @@ Funcionalidade: Cadastro de Usuario
   @cadastro_valido_excel
   Cenario: Cadastro completo pelo excel com sucesso
     Quando preenche o formulario com dados validos do excel
-    E realiza o cadastro
+    E tenta se logar
     Entao eh redirecionado para a pagina inicial    
     
   @cadastro_email_invalido_excel

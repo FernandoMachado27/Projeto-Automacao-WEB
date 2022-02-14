@@ -19,7 +19,7 @@ public class LoginSteps {
 	}
 	
 	@Quando("preenche os dados corretos")
-	public void preenche_os_dados_corretos() {
+	public void preenche_os_dados_corretos() throws Throwable {
 		this.paginaDeLogin.preencherUsername("admin");
 		this.paginaDeLogin.preencherPassword("adm1n");
 	}

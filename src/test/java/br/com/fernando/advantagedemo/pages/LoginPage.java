@@ -2,6 +2,8 @@ package br.com.fernando.advantagedemo.pages;
 
 import java.io.IOException;
 import java.time.Duration;
+import java.util.List;
+import java.util.Map;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -9,6 +11,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import br.com.fernando.advantagedemo.Browser;
+import io.cucumber.datatable.DataTable;
 
 public class LoginPage extends Browser {
 
@@ -44,4 +47,6 @@ public class LoginPage extends Browser {
 	    return browser.getPageSource().contains(mensagemDeErro);
 	}
 
-}
+	}
+
+

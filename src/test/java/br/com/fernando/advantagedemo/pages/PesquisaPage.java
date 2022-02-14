@@ -15,7 +15,7 @@ public class PesquisaPage extends Browser{
 
 	public PesquisaPage(WebDriver browser) {
 		super(browser);
-		this.wait = new WebDriverWait(browser, Duration.ofSeconds(10));
+		this.wait = new WebDriverWait(browser, Duration.ofSeconds(5));
 	}
 
 	public boolean contemProdutoPesquisado(String product) {
@@ -33,11 +33,11 @@ public class PesquisaPage extends Browser{
 
 	public void pesquisarProduto(String produtoPesquisado){
 		browser.findElement(By.id("autoComplete")).sendKeys(produtoPesquisado, Keys.ENTER);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#\\31 6"))).click();
-	}
-
-	public void pesquisarProdutoInexistente(String produtoInexistente) {
-		browser.findElement(By.id("autoComplete")).sendKeys(produtoInexistente, Keys.ENTER);
+		try {
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#\\31 6"))).click();
+		} catch (Exception e) {
+			
+		}
 	}
 
 }

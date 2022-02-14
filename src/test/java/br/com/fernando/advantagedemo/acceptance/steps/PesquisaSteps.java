@@ -11,7 +11,6 @@ public class PesquisaSteps {
 	
 	private PaginaInicial paginaInicial;
 	private PesquisaPage paginaDePesquisa;
-
 	
 	@Dado("o usuario esta na pagina inicial e acessa a area de pesquisa")
 	public void o_usuario_esta_na_pagina_inicial_e_acessa_a_area_de_pesquisa() {
@@ -27,18 +26,18 @@ public class PesquisaSteps {
 	@Entao("o produto eh encontrado com sucesso")
 	public void o_produto_eh_encontrado_com_sucesso() {
 		Assert.assertTrue(this.paginaDePesquisa.contemProdutoPesquisado("HP ELITEPAD 1000 G2 TABLET"));
-		paginaDePesquisa.fechar();
+		this.paginaDePesquisa.fechar();
 	}
 	
 	@Quando("pesquisa um produto que nao existe")
 	public void pesquisa_um_produto_que_nao_existe() {
-		this.paginaDePesquisa.pesquisarProdutoInexistente("watch");
+		this.paginaDePesquisa.pesquisarProduto("watch");
 	}
 
 	@Entao("o produto nao eh encontrado")
 	public void o_produto_nao_eh_encontrado() {
 		Assert.assertTrue(this.paginaDePesquisa.mensagemDeProdutoNaoEncontrado());
-		paginaDePesquisa.fechar();
+		this.paginaDePesquisa.fechar();
 	}
 
 }

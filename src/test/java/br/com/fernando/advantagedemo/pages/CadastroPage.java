@@ -74,8 +74,8 @@ public class CadastroPage extends Browser{
 		browser.findElement(By.name("postal_codeRegisterPage")).sendKeys(postalCode);
 	}
 	
-	public void concordaComOsTermosDeUso(String conditions) {
-		if (conditions == "Sim" || conditions == "sim") {
+	public void concordaComOsTermosDeUso(boolean terms) {
+		if (terms == true ) {
 			browser.findElement(By.name("i_agree")).click();
 		}else {
 			System.out.println("Não é possível realizar o cadastro sem aceitar os termos de uso");
