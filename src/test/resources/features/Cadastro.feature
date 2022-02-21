@@ -10,7 +10,7 @@ Funcionalidade: Cadastro de Usuario
   Cenario: Cadastro completo com sucesso
     Quando preenche o formulario com dados validos
     E tenta se logar
-    Entao eh redirecionado para a pagina inicial
+    Entao e redirecionado para a pagina inicial
 
 	@cadastro_email_invalido
   Cenario: Um usuario com email invalido nao consegue se logar
@@ -22,7 +22,7 @@ Funcionalidade: Cadastro de Usuario
   Cenario: Cadastro completo pelo excel com sucesso
     Quando preenche o formulario com dados validos do excel
     E tenta se logar
-    Entao eh redirecionado para a pagina inicial    
+    Entao e redirecionado para a pagina inicial    
     
   @cadastro_email_invalido_excel
   Cenario: Um usuario com email invalido do excel nao consegue se logar

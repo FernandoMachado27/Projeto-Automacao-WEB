@@ -94,6 +94,14 @@
 		</dependency>
 
 
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-picocontainer</artifactId>
+			<version>6.2.0</version>
+			<scope>test</scope>
+		</dependency>
+
+
 	</dependencies>
 
 

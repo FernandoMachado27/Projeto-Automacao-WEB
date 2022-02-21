@@ -3,23 +3,41 @@ package br.com.fernando.advantagedemo.acceptance.steps;
 import java.io.IOException;
 
 import org.junit.Assert;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 
-import br.com.fernando.advantagedemo.pages.CadastroPage;
+import br.com.fernando.advantagedemo.pages.RegisterPage;
 import br.com.fernando.advantagedemo.pages.LoginPage;
+import br.com.fernando.advantagedemo.cucumber.TestContext;
+import br.com.fernando.advantagedemo.dataProviders.ConfigFileReader;
+import br.com.fernando.advantagedemo.managers.FileReaderManager;
+import br.com.fernando.advantagedemo.managers.PageObjectManager;
+import br.com.fernando.advantagedemo.managers.WebDriverManager;
+import br.com.fernando.advantagedemo.pages.HomePage;
 import io.cucumber.java.pt.Dado;
 import io.cucumber.java.pt.Entao;
 import io.cucumber.java.pt.Quando;
 
-public class CadastroSteps {
+public class RegisterSteps {
 	
-	private PaginaInicial paginaInicial;
 	private LoginPage paginaDeLogin;
-	private CadastroPage paginaDeCadastro;
+	private RegisterPage paginaDeCadastro;
+	private WebDriver browser;
+	private PageObjectManager pageObjectManager;
+	private HomePage homePage;
+	private ConfigFileReader configFileReader;
+	private WebDriverManager webDriverManager;
+	private TestContext testContext;
+	
+	public RegisterSteps(TestContext context) {
+		this.testContext = context;
+		this.homePage = testContext.getPageObjectManager().getHomePage();
+	}
 	
 	@Dado("o usuario acessa pagina de cadastro")
 	public void o_usuario_acessa_pagina_de_cadastro() throws IOException, InterruptedException {
-		this.paginaInicial = new PaginaInicial();
-		this.paginaDeLogin = this.paginaInicial.acessarPaginaDeLogin();
+		this.homePage.paginaInicial();
+		this.paginaDeLogin = this.homePage.acessarPaginaDeLogin();
 		this.paginaDeCadastro = this.paginaDeLogin.criarNovoCadastro();
 		
 	}
@@ -28,7 +46,7 @@ public class CadastroSteps {
 
 	@Quando("preenche o formulario com dados validos")
 	public void preenche_o_formulario_com_dados_validos() {
-		this.paginaDeCadastro.nomeEEmailDoNovoUsuario("Fernando252", "fernando2@testando.com");
+		this.paginaDeCadastro.nomeEEmailDoNovoUsuario("Fernando256", "fernando2@testando.com");
 		this.paginaDeCadastro.digiteASenhaEConfirme("12345aA", "12345aA");
 		this.paginaDeCadastro.digiteNomeESobrenome("Fernando", "Testando");
 		this.paginaDeCadastro.digiteNumeroDeCelular("11999272728");
@@ -45,10 +63,10 @@ public class CadastroSteps {
 		this.paginaDeCadastro.efetuaCadastro();
 	}
 	
-	@Entao("eh redirecionado para a pagina inicial")
-	public void eh_redirecionado_para_a_pagina_inicial() {
+	@Entao("e redirecionado para a pagina inicial")
+	public void e_redirecionado_para_a_pagina_inicial() {
 		Assert.assertTrue(paginaDeCadastro.validarNomeDeUsuario());
-		this.paginaDeCadastro.fechar();
+//		this.paginaDeCadastro.fechar();
 	}
 	
 	// CADASTRO COM EMAIL INVÁLIDO
@@ -71,7 +89,7 @@ public class CadastroSteps {
 	public void continua_na_pagina_de_cadastro_com_mensagem_de_email_invalido() {
 		Assert.assertTrue(this.paginaDeCadastro.paginaContemMensagemDeEmailInvalido());
 		Assert.assertTrue(this.paginaDeCadastro.isPaginaDeCadastro());
-		this.paginaDeCadastro.fechar();
+//		this.paginaDeCadastro.fechar();
 	}
 	
 	// CADASTRO PELO EXCEL
@@ -102,7 +120,7 @@ public class CadastroSteps {
 	@Entao("continua na pagina de cadastro com mensagem de username pass e confirmPass invalidos")
 	public void continua_na_pagina_de_cadastro_com_mensagem_de_username_pass_e_confirmPass_invalidos() {
 		Assert.assertTrue(paginaDeCadastro.paginaContemMensagemUserPassEConfirmPassInvalidos());
-		this.paginaDeCadastro.fechar();
+//		this.paginaDeCadastro.fechar();
 	}
 }
 

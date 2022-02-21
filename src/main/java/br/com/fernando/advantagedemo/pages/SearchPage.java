@@ -4,18 +4,20 @@ import java.time.Duration;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import br.com.fernando.advantagedemo.Browser;
-
-public class PesquisaPage extends Browser{
+public class SearchPage{
 	
 	private  WebDriverWait wait;
+	private WebDriver browser;
+	protected static final String URL_INICIAL = "https://advantageonlineshopping.com/#/";
 
-	public PesquisaPage(WebDriver browser) {
-		super(browser);
-		this.wait = new WebDriverWait(browser, Duration.ofSeconds(5));
+	public SearchPage(WebDriver browser) {
+		this.browser = browser;
+		this.wait = new WebDriverWait(browser, Duration.ofSeconds(10));
+		PageFactory.initElements(browser, this);
 	}
 
 	public boolean contemProdutoPesquisado(String product) {
@@ -38,6 +40,10 @@ public class PesquisaPage extends Browser{
 		} catch (Exception e) {
 			
 		}
+	}
+
+	public void fechar() {
+		this.browser.quit();
 	}
 
 }
