@@ -35,7 +35,6 @@ public class HomePage{
 	@FindBy(how = How.XPATH, using = "//*[@id=\"a\"]")
 	private WebElement loading;
 	
-	
 	public LoginPage acessarPaginaDeLogin() {
 		wait.until(ExpectedConditions.elementToBeClickable(menuUser)).click();
 		return new LoginPage(browser);
