@@ -2,6 +2,8 @@ package br.com.fernando.advantagedemo.pages;
 
 import java.time.Duration;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -49,6 +51,22 @@ public class HomePage{
 		browser.get(FileReaderManager.getInstance().getConfigReader().getApplicationUrl());
 		wait.until(ExpectedConditions.visibilityOf(loading));
 		wait.until(ExpectedConditions.invisibilityOf(loading));
+	}
+
+	public boolean validarNomeDeUsuario() {
+		String nomeUsuario = browser.findElement(By.cssSelector("#menuUserLink > span")).getText();
+		return browser.getPageSource().contains(nomeUsuario);
+	}
+
+	public SearchPage pesquisarProduto(String produtoPesquisado){
+		browser.findElement(By.id("autoComplete")).sendKeys(produtoPesquisado, Keys.ENTER);
+		try {
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#\\31 6"))).click();
+			return new SearchPage(browser);
+		} catch (Exception e) {
+			
+		}
+		return null;
 	}
 
 

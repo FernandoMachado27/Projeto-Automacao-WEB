@@ -33,17 +33,9 @@ public class SearchPage{
 		return browser.getCurrentUrl().equals(URL_INICIAL);
 	}
 
-	public void pesquisarProduto(String produtoPesquisado){
-		browser.findElement(By.id("autoComplete")).sendKeys(produtoPesquisado, Keys.ENTER);
-		try {
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#\\31 6"))).click();
-		} catch (Exception e) {
-			
-		}
-	}
-
 	public void fechar() {
 		this.browser.quit();
 	}
+
 
 }

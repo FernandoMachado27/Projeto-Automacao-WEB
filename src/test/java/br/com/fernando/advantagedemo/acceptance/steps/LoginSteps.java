@@ -1,34 +1,27 @@
 package br.com.fernando.advantagedemo.acceptance.steps;
 
+import java.io.IOException;
+
 import org.junit.Assert;
 
 import br.com.fernando.advantagedemo.pages.LoginPage;
 import br.com.fernando.advantagedemo.cucumber.TestContext;
-import br.com.fernando.advantagedemo.pages.HomePage;
-import io.cucumber.java.pt.Dado;
 import io.cucumber.java.pt.E;
 import io.cucumber.java.pt.Entao;
-import io.cucumber.java.pt.Quando;
 
 public class LoginSteps {
 	
 	private LoginPage paginaDeLogin;
-	private HomePage homePage;
 	private TestContext testContext;
 	
 	public LoginSteps(TestContext context) {
 		this.testContext = context;
-		this.homePage = testContext.getPageObjectManager().getHomePage();
+		this.paginaDeLogin = testContext.getPageObjectManager().getLoginPage();
 	}
 	
-	@Dado("o usuario entra no site")
-	public void o_usuario_entra_no_site() {
-		this.homePage.paginaInicial();
-	}
-	
-	@Quando("entra na area de login")
-	public void entra_na_area_de_login() {
-		this.paginaDeLogin = this.homePage.acessarPaginaDeLogin();
+	@E("clica para criar nova conta")
+	public void clica_para_criar_nova_conta() throws IOException, InterruptedException {
+		this.paginaDeLogin.criarNovoCadastro();
 	}
 	
 	@E("preenche os dados corretos")
@@ -40,11 +33,6 @@ public class LoginSteps {
 	@E("clica para logar")
 	public void clica_para_logar() {
 		this.paginaDeLogin.logar();
-	}
-	
-	@Entao("login completo")
-		public void login_completo() {
-		Assert.assertTrue(paginaDeLogin.validarNomeDeUsuario());
 	}
 	
 	@E("preenche um dos dados incorretamente")

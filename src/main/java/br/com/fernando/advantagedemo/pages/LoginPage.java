@@ -52,8 +52,9 @@ public class LoginPage {
 		wait.until(ExpectedConditions.elementToBeClickable(campoPassword)).sendKeys(password);
 	}
 	
-	public void logar() {
+	public HomePage logar() {
 		wait.until(ExpectedConditions.elementToBeClickable(logar)).click();
+		return new HomePage(browser);
 	}
 
 	public boolean contemMensagemDeErro() {

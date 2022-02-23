@@ -132,8 +132,9 @@ public class RegisterPage  {
 		}
 	}
 
-	public void efetuaCadastro() {
+	public HomePage efetuaCadastro() {
 		campoEfetuarCadastro.click();
+		return new HomePage(browser);
 	}
 
 	public boolean paginaContemMensagemDeEmailInvalido() {
@@ -175,11 +176,6 @@ public class RegisterPage  {
 		return pageSource.contains("Username field is required") 
 				&& pageSource.contains("Password field is required")  
 				&& pageSource.contains("Confirm password field is required");
-	}
-
-	public boolean validarNomeDeUsuario() {
-		String nomeUsuario = browser.findElement(By.cssSelector("#menuUserLink > span")).getText();
-		return browser.getPageSource().contains(nomeUsuario);
 	}
 
 }

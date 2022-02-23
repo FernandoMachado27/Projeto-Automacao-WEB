@@ -5,46 +5,25 @@ import java.io.IOException;
 import org.junit.Assert;
 
 import br.com.fernando.advantagedemo.pages.RegisterPage;
-import br.com.fernando.advantagedemo.pages.LoginPage;
 import br.com.fernando.advantagedemo.cucumber.TestContext;
-import br.com.fernando.advantagedemo.pages.HomePage;
-import io.cucumber.java.pt.Dado;
 import io.cucumber.java.pt.E;
 import io.cucumber.java.pt.Entao;
-import io.cucumber.java.pt.Quando;
 
 public class RegisterSteps {
 	
-	private LoginPage paginaDeLogin;
 	private RegisterPage paginaDeCadastro;
-	private HomePage homePage;
 	private TestContext testContext;
 	
-	public RegisterSteps(TestContext context) {
+	public RegisterSteps(TestContext context) throws IOException {
 		this.testContext = context;
-		this.homePage = testContext.getPageObjectManager().getHomePage();
-	}
-	
-	@Dado("o usuario acessa o site")
-	public void o_usuario_acessa_o_site() {
-		this.homePage.paginaInicial();
-	}
-	
-	@Quando("clica para fazer login")
-	public void clica_para_fazer_login() {
-		this.paginaDeLogin = this.homePage.acessarPaginaDeLogin();
-	}
-	
-	@E("clica para criar nova conta")
-	public void clica_para_criar_nova_conta() throws IOException, InterruptedException {
-		this.paginaDeCadastro = this.paginaDeLogin.criarNovoCadastro();
+		this.paginaDeCadastro = testContext.getPageObjectManager().getRegisterPage();
 	}
 	
 	// CADASTRO COM DADOS VALIDOS
 
 	@E("preenche o formulario com dados validos")
 	public void preenche_o_formulario_com_dados_validos() {
-		this.paginaDeCadastro.nomeEEmailDoNovoUsuario("Fernando258", "fernando2@testando.com");
+		this.paginaDeCadastro.nomeEEmailDoNovoUsuario("Fernando262", "fernando2@testando.com");
 		this.paginaDeCadastro.digiteASenhaEConfirme("12345aA", "12345aA");
 		this.paginaDeCadastro.digiteNomeESobrenome("Fernando", "Testando");
 		this.paginaDeCadastro.digiteNumeroDeCelular("11999272728");
@@ -59,11 +38,6 @@ public class RegisterSteps {
 	@E("tenta se logar")
 	public void tenta_se_logar() {
 		this.paginaDeCadastro.efetuaCadastro();
-	}
-	
-	@Entao("e redirecionado para a pagina inicial")
-	public void e_redirecionado_para_a_pagina_inicial() {
-		Assert.assertTrue(paginaDeCadastro.validarNomeDeUsuario());
 	}
 	
 	// CADASTRO COM EMAIL INVÁLIDO
