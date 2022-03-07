@@ -17,7 +17,7 @@ public class SearchPage{
 	public SearchPage(WebDriver browser) {
 		this.browser = browser;
 		this.wait = new WebDriverWait(browser, Duration.ofSeconds(10));
-		PageFactory.initElements(browser, this);
+		PageFactory.initElements(browser, this); // inicializar todos os elementos da web localizados pela anotação @FindBy
 	}
 
 	public boolean contemProdutoPesquisado(String product) {

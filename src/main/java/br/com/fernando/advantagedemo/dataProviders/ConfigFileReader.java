@@ -15,7 +15,7 @@ public class ConfigFileReader {
 	private final String propertyFilePath= "configs//Configuration.properties";
 
 	
-	public ConfigFileReader(){ // leitor de arquivos config
+	public ConfigFileReader(){ // leitor de arquivos config.properties
 		BufferedReader reader;
 		try {
 			reader = new BufferedReader(new FileReader(propertyFilePath));
@@ -60,7 +60,7 @@ public class ConfigFileReader {
 		String browserName = properties.getProperty("browser");
 		if(browserName == null || browserName.equals("chrome")) return DriverType.CHROME;
 		else if(browserName.equalsIgnoreCase("firefox")) return DriverType.FIREFOX;
-		else if(browserName.equals("iexplorer")) return DriverType.INTERNETEXPLORER;
+		else if(browserName.equals("edge")) return DriverType.EDGE;
 		else throw new RuntimeException("Browser Name Key value in Configuration.properties is not matched : " + browserName);
 	}
 
@@ -75,5 +75,11 @@ public class ConfigFileReader {
 		String windowSize = properties.getProperty("windowMaximize");
 		if(windowSize != null) return Boolean.valueOf(windowSize);
 		return true;
+	}
+
+	public String getVersionChrome() {
+		String versionChrome = properties.getProperty("versionChrome");
+		if(versionChrome!= null) return versionChrome;
+		else throw new RuntimeException("versionChrome not specified in the Configuration.properties file.");		
 	}
 }

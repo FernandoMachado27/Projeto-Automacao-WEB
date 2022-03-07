@@ -20,7 +20,7 @@ public class LoginPage {
 	public LoginPage(WebDriver browser) {
 		this.browser = browser;
 		this.wait = new WebDriverWait(browser, Duration.ofSeconds(10));
-		PageFactory.initElements(browser, this);
+		PageFactory.initElements(browser, this); // inicializar todos os elementos da web localizados pela anotação @FindBy
 	}
 	
 	@FindBy(how = How.CSS, using = "body > login-modal > div > div > div.login.ng-scope > a.create-new-account.ng-scope")

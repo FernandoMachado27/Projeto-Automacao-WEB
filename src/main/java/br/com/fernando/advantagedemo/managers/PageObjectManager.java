@@ -9,7 +9,7 @@ import br.com.fernando.advantagedemo.pages.LoginPage;
 import br.com.fernando.advantagedemo.pages.RegisterPage;
 import br.com.fernando.advantagedemo.pages.SearchPage;
 
-public class PageObjectManager { // gerenciador de objetos da pagina
+public class PageObjectManager { // gerenciador de objetos da pagina/ cria o objeto da página e também garante que o mesmo objeto não seja criado repetidamente
 
 	private WebDriver browser;
 	private HomePage homePage;

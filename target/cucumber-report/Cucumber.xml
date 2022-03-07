@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testsuite errors="0" failures="0" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="2" time="24.1">
+<testcase classname="Login de Usuario" name="_2" time="13.758">
+<system-out><![CDATA[Dado o usuario entra no site................................................passed
+Quando entra na area de login...............................................passed
+E preenche os dados corretos................................................passed
+E clica para logar..........................................................passed
+Entao login completo........................................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Login de Usuario" name="_3" time="9.951">
+<system-out><![CDATA[Dado o usuario entra no site................................................passed
+Quando entra na area de login...............................................passed
+E preenche um dos dados incorretamente......................................passed
+E clica para logar..........................................................passed
+Entao nao foi possivel concluir o login.....................................passed
+]]></system-out>
+</testcase>
+</testsuite>

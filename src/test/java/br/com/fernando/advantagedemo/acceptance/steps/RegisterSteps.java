@@ -19,19 +19,22 @@ public class RegisterSteps {
 		this.paginaDeCadastro = testContext.getPageObjectManager().getRegisterPage();
 	}
 	
-	// CADASTRO COM DADOS VALIDOS
-
-	@E("preenche o formulario com dados validos")
-	public void preenche_o_formulario_com_dados_validos() {
-		this.paginaDeCadastro.nomeEEmailDoNovoUsuario("Fernando262", "fernando2@testando.com");
-		this.paginaDeCadastro.digiteASenhaEConfirme("12345aA", "12345aA");
-		this.paginaDeCadastro.digiteNomeESobrenome("Fernando", "Testando");
-		this.paginaDeCadastro.digiteNumeroDeCelular("11999272728");
-		this.paginaDeCadastro.digiteSeuPaisDeOrigem("Brazil");
-		this.paginaDeCadastro.digiteSuaCidade("São Paulo");
-		this.paginaDeCadastro.digiteSeuEndereco("Estrada São Paulo");
-		this.paginaDeCadastro.digiteSeuEstado("São Paulo");
-		this.paginaDeCadastro.digiteOCodigoPostal("06364000");
+	// CADASTRO PELO EXCEL
+	
+	@E("preenche o formulario com dados validos do excel")
+	public void preenche_o_formulario_com_dados_validos_do_excel() {
+		this.paginaDeCadastro.preencherUsername(1);
+		this.paginaDeCadastro.preencherEmail(1);
+		this.paginaDeCadastro.preencherSenha(1);
+		this.paginaDeCadastro.preencherConfirmSenha(1);
+		this.paginaDeCadastro.preencherNome(1);
+		this.paginaDeCadastro.preencherSobrenome(1);
+		this.paginaDeCadastro.preencherCelular(1);
+		this.paginaDeCadastro.preencherPais(1);
+		this.paginaDeCadastro.preencherCidade(1);
+		this.paginaDeCadastro.preencherEndereço(1);
+		this.paginaDeCadastro.preencherEstado(1);
+		this.paginaDeCadastro.preencherCodigoPostal(1);
 		this.paginaDeCadastro.concordaComOsTermosDeUso(true);
 	}
 	
@@ -40,50 +43,36 @@ public class RegisterSteps {
 		this.paginaDeCadastro.efetuaCadastro();
 	}
 	
-	// CADASTRO COM EMAIL INVÁLIDO
-	
-	@E("preenche o formulario com email invalido")
-	public void preenche_o_formulario_com_email_invalido() {
-		this.paginaDeCadastro.nomeEEmailDoNovoUsuario("Fernando44", "fernando2");
-		this.paginaDeCadastro.digiteASenhaEConfirme("12345aA", "12345aA");
-		this.paginaDeCadastro.digiteNomeESobrenome("Fernando", "Fernandes");
-		this.paginaDeCadastro.digiteNumeroDeCelular("11999272728");
-		this.paginaDeCadastro.digiteSeuPaisDeOrigem("Brazil");
-		this.paginaDeCadastro.digiteSuaCidade("São Paulo");
-		this.paginaDeCadastro.digiteSeuEndereco("Estrada São Paulo");
-		this.paginaDeCadastro.digiteSeuEstado("São Paulo");
-		this.paginaDeCadastro.digiteOCodigoPostal("06364000");
-		this.paginaDeCadastro.concordaComOsTermosDeUso(true);
-	}
-	
-	@Entao("continua na pagina de cadastro com mensagem de email invalido")
-	public void continua_na_pagina_de_cadastro_com_mensagem_de_email_invalido() {
-		Assert.assertTrue(this.paginaDeCadastro.paginaContemMensagemDeEmailInvalido());
-		Assert.assertTrue(this.paginaDeCadastro.isPaginaDeCadastro());
-	}
-	
-	// CADASTRO PELO EXCEL
-	
-	@E("preenche o formulario com dados validos do excel")
-	public void preenche_o_formulario_com_dados_validos_do_excel() {
-		this.paginaDeCadastro.preencheFormularioPeloExcel(1);
-		this.paginaDeCadastro.concordaComOsTermosDeUso(true);
-	}
-	
 	// CADASTRO INVÁLIDO PELO EXCEL
 	
 	@E("preenche o formulario com email invalido do excel")
 	public void preenche_o_formulario_com_email_invalido_do_excel() {
-		this.paginaDeCadastro.preencheFormularioPeloExcel(2);
+		this.paginaDeCadastro.preencherUsername(2);
+		this.paginaDeCadastro.preencherEmail(2);
+		this.paginaDeCadastro.preencherSenha(2);
+		this.paginaDeCadastro.preencherConfirmSenha(2);
+		this.paginaDeCadastro.preencherNome(2);
+		this.paginaDeCadastro.preencherSobrenome(2);
+		this.paginaDeCadastro.preencherCelular(2);
+		this.paginaDeCadastro.preencherPais(2);
+		this.paginaDeCadastro.preencherCidade(2);
+		this.paginaDeCadastro.preencherEndereço(2);
+		this.paginaDeCadastro.preencherEstado(2);
+		this.paginaDeCadastro.preencherCodigoPostal(2);
 		this.paginaDeCadastro.concordaComOsTermosDeUso(true);
+	}
+	
+	@Entao("continua na pagina de cadastro com mensagem de email invalido")
+	public void continua_na_pagina_de_cadastro_com_mensagem_de_email_invalido() throws InterruptedException {
+		Assert.assertTrue(this.paginaDeCadastro.paginaContemMensagemDeEmailInvalido());
+		Assert.assertTrue(this.paginaDeCadastro.isPaginaDeCadastro());
 	}
 	
 	// CADASTRO PREENCHENDO APENAS CAMPO DE EMAIL
 	
 	@E("preenche apenas o campo de email")
 	public void preenche_apenas_o_campo_de_email() {
-		this.paginaDeCadastro.nomeEEmailDoNovoUsuario(" ", "fernando2@testando.com");
-		this.paginaDeCadastro.digiteASenhaEConfirme(" ", " ");
+		this.paginaDeCadastro.digiteEmail("fernando2@testando.com");
 		this.paginaDeCadastro.concordaComOsTermosDeUso(true);
 	}
 	

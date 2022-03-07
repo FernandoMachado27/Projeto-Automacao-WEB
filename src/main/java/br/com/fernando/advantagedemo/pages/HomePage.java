@@ -19,13 +19,11 @@ public class HomePage{
 	
 	private WebDriverWait wait;
 	private WebDriver browser;
-	private ConfigFileReader configFileReader;
 	
 	public HomePage(WebDriver browser) {
 		this.browser = browser;
 		this.wait = new WebDriverWait(browser, Duration.ofSeconds(20));
-		PageFactory.initElements(browser, this);
-		configFileReader= new ConfigFileReader();
+		PageFactory.initElements(browser, this); // inicializar todos os elementos da web localizados pela anotação @FindBy
 	}
 	
 	@FindBy(how = How.ID, using = "menuUser")

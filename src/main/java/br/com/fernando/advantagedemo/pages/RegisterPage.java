@@ -6,14 +6,19 @@ import java.io.IOException;
 import java.time.Duration;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import br.com.fernando.advantagedemo.managers.FileReaderManager;
+
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -27,10 +32,11 @@ public class RegisterPage  {
 	public RegisterPage(WebDriver browser) throws IOException{
 		this.browser = browser;
 		this.wait = new WebDriverWait(browser, Duration.ofSeconds(20));
-		PageFactory.initElements(browser, this);
+		PageFactory.initElements(browser, this); // inicializar todos os elementos da web localizados pela anotação @FindBy
 	}
 	
-	File file = new File("CadastroComDadosExcel.xlsx");
+//	File file = new File("CadastroComDadosExcel.xlsx");
+	File file = new File(FileReaderManager.getInstance().getConfigReader().getExcelUrl());
 	FileInputStream inputStream = new FileInputStream(file);
 	XSSFWorkbook wb = new XSSFWorkbook(inputStream);
 	XSSFSheet sheet = wb.getSheet("Planilha1");
@@ -80,49 +86,6 @@ public class RegisterPage  {
 	
 	@FindBy(how = How.ID, using = "register_btnundefined") 
 	private WebElement campoEfetuarCadastro;
-
-
-	public void nomeEEmailDoNovoUsuario(String username, String email) {
-		wait.until(ExpectedConditions.elementToBeClickable(campoUsername)).sendKeys(username);
-		campoEmail.sendKeys(email);
-	}
-
-	public void digiteASenhaEConfirme(String password, String confirmPassword) {
-		campoPass.sendKeys(password);
-		campoConfirmPass.sendKeys(confirmPassword);
-	}
-
-	public void digiteNomeESobrenome(String Firstname, String lastName) {
-		campoFistName.sendKeys(Firstname);
-		campoLastName.sendKeys(lastName);
-	}
-
-	public void digiteNumeroDeCelular(String phoneNumber) {
-		campoPhonNumber.sendKeys(phoneNumber);
-	}
-
-	public void digiteSeuPaisDeOrigem(String country) {
-		campoList.click();
-		wait.until(ExpectedConditions.visibilityOf(campoEsperandoPrimeiroPaisAparecer));
-		Select se = new Select(campoList);
-		se.selectByVisibleText(country);
-	}
-
-	public void digiteSuaCidade(String city) {
-		campoCity.sendKeys(city);
-	}
-
-	public void digiteSeuEndereco(String address) {
-		campoAddress.sendKeys(address);
-	}
-
-	public void digiteSeuEstado(String state) {
-		campoState.sendKeys(state);
-	}
-
-	public void digiteOCodigoPostal(String postalCode) {
-		campoPostalCode.sendKeys(postalCode);
-	}
 	
 	public void concordaComOsTermosDeUso(boolean terms) {
 		if (terms == true ) {
@@ -137,7 +100,8 @@ public class RegisterPage  {
 		return new HomePage(browser);
 	}
 
-	public boolean paginaContemMensagemDeEmailInvalido() {
+	public boolean paginaContemMensagemDeEmailInvalido() throws InterruptedException {
+		Thread.sleep(1000);
 		return browser.getPageSource().contains("Your email address isn't formatted correctly");
 	}
 
@@ -153,29 +117,74 @@ public class RegisterPage  {
 		this.browser.quit();
 	}
 
-	public void preencheFormularioPeloExcel(int numeroLinha) {
+	public boolean paginaContemMensagemUserPassEConfirmPassInvalidos() {
+		String pageSource = browser.getPageSource(); 
+		String nomeInvalido = browser.findElement(By.cssSelector("#formCover > div:nth-child(1) > div:nth-child(2) > sec-view:nth-child(1) > div > label")).getText();
+		String senhaInvalido = browser.findElement(By.cssSelector("#formCover > div:nth-child(1) > div:nth-child(3) > sec-view:nth-child(1) > div > label")).getText();
+		String confirmInvalido = browser.findElement(By.cssSelector("#formCover > div:nth-child(1) > div:nth-child(3) > sec-view:nth-child(2) > div > label")).getText();
+		return browser.getPageSource().contains(nomeInvalido)
+				&& pageSource.contains(senhaInvalido)  
+				&& pageSource.contains(confirmInvalido);
+	}
+
+	public void digiteEmail(String email) {
+		Actions action = new Actions(browser);
+		campoUsername.click();
+		action.sendKeys(Keys.TAB);
+		campoEmail.sendKeys(email);
+		action.sendKeys(Keys.TAB);
+		action.sendKeys(Keys.TAB);
+	}
+
+	public void preencherUsername(int numeroLinha) {
 		wait.until(ExpectedConditions.elementToBeClickable(campoUsername)).sendKeys(sheet.getRow(numeroLinha).getCell(0).getStringCellValue());
+	}
+
+	public void preencherEmail(int numeroLinha) {
 		campoEmail.sendKeys(sheet.getRow(numeroLinha).getCell(1).getStringCellValue());
+	}
+
+	public void preencherSenha(int numeroLinha) {
 		campoPass.sendKeys(sheet.getRow(numeroLinha).getCell(2).getStringCellValue());
+	}
+
+	public void preencherConfirmSenha(int numeroLinha) {
 		campoConfirmPass.sendKeys(sheet.getRow(numeroLinha).getCell(3).getStringCellValue());
+	}
+
+	public void preencherNome(int numeroLinha) {
 		campoFistName.sendKeys(sheet.getRow(numeroLinha).getCell(4).getStringCellValue());
+	}
+
+	public void preencherSobrenome(int numeroLinha) {
 		campoLastName.sendKeys(sheet.getRow(numeroLinha).getCell(5).getStringCellValue());
+	}
+
+	public void preencherCelular(int numeroLinha) {
 		campoPhonNumber.sendKeys(sheet.getRow(numeroLinha).getCell(6).getStringCellValue());
+	}
+
+	public void preencherPais(int numeroLinha) {
 		campoList.click();
 		wait.until(ExpectedConditions.visibilityOf(campoEsperandoPrimeiroPaisAparecer));
 		Select se = new Select(campoList);
 		se.selectByVisibleText(sheet.getRow(numeroLinha).getCell(7).getStringCellValue());
-		campoCity.sendKeys(sheet.getRow(numeroLinha).getCell(8).getStringCellValue());
-		campoAddress.sendKeys(sheet.getRow(numeroLinha).getCell(9).getStringCellValue());
-		campoState.sendKeys(sheet.getRow(numeroLinha).getCell(10).getStringCellValue());
-		campoPostalCode.sendKeys(sheet.getRow(numeroLinha).getCell(11).getStringCellValue());
 	}
 
-	public boolean paginaContemMensagemUserPassEConfirmPassInvalidos() {
-		String pageSource = browser.getPageSource(); 
-		return pageSource.contains("Username field is required") 
-				&& pageSource.contains("Password field is required")  
-				&& pageSource.contains("Confirm password field is required");
+	public void preencherCidade(int numeroLinha) {
+		campoCity.sendKeys(sheet.getRow(numeroLinha).getCell(8).getStringCellValue());
+	}
+
+	public void preencherEndereço(int numeroLinha) {
+		campoAddress.sendKeys(sheet.getRow(numeroLinha).getCell(9).getStringCellValue());
+	}
+
+	public void preencherEstado(int numeroLinha) {
+		campoState.sendKeys(sheet.getRow(numeroLinha).getCell(10).getStringCellValue());
+	}
+
+	public void preencherCodigoPostal(int numeroLinha) {
+		campoPostalCode.sendKeys(sheet.getRow(numeroLinha).getCell(11).getStringCellValue());
 	}
 
 }
