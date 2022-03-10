@@ -11,13 +11,13 @@ import br.com.fernando.advantagedemo.enums.DriverType;
 import br.com.fernando.advantagedemo.enums.EnvironmentType;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class WebDriverManage { // gerente de web driver
+public class WebDriverManage { // gerente de web driver / Única responsabilidade é fornecer o WebDriver
 	private WebDriver browser;
 	private static DriverType driverType;
 	private static EnvironmentType environmentType;
 	private static final String CHROME_DRIVER_PROPERTY = "webdriver.chrome.driver";
 
-	public WebDriverManage() { // Única responsabilidade é fornecer o WebDriver
+	public WebDriverManage() { 
 		driverType = FileReaderManager.getInstance().getConfigReader().getBrowser();
 		environmentType = FileReaderManager.getInstance().getConfigReader().getEnvironment();
 	}
@@ -44,8 +44,7 @@ public class WebDriverManage { // gerente de web driver
 	private WebDriver createLocalDriver() {
         switch (driverType) {	    
         case CHROME : 
-//        	System.setProperty(CHROME_DRIVER_PROPERTY, FileReaderManager.getInstance().getConfigReader().getDriverPath());
-        	WebDriverManager.chromedriver().driverVersion(FileReaderManager.getInstance().getConfigReader().getVersionChrome()).setup();
+        	WebDriverManager.chromedriver().setup();
         	browser = new ChromeDriver();
     		break;
         case EDGE : 
@@ -62,5 +61,9 @@ public class WebDriverManage { // gerente de web driver
 		browser.close();
 		browser.quit();
 	}
+	
+	/* como escolher versão do driver:
+	 * WebDriverManager.chromedriver().driverVersion(FileReaderManager.getInstance().getConfigReader().getVersionChrome()).setup();
+	 */
 
 }

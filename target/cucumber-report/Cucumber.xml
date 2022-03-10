@@ -1,6 +1,47 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<testsuite errors="0" failures="0" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="2" time="24.1">
-<testcase classname="Login de Usuario" name="_2" time="13.758">
+<testsuite errors="0" failures="0" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="7" time="89.395">
+<testcase classname="Cadastro de Usuario" name="Cadastro completo pelo excel com sucesso" time="12.572">
+<system-out><![CDATA[Dado o usuario acessa o site................................................passed
+Quando clica para fazer login...............................................passed
+E clica para criar nova conta...............................................passed
+E preenche o formulario com dados validos do excel..........................passed
+E tenta se logar............................................................passed
+Entao e redirecionado para a pagina inicial.................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Cadastro de Usuario" name="Um usuario com email invalido do excel nao consegue se logar" time="12.378">
+<system-out><![CDATA[Dado o usuario acessa o site................................................passed
+Quando clica para fazer login...............................................passed
+E clica para criar nova conta...............................................passed
+E preenche o formulario com email invalido do excel.........................passed
+E tenta se logar............................................................passed
+Entao continua na pagina de cadastro com mensagem de email invalido.........passed
+]]></system-out>
+</testcase>
+<testcase classname="Cadastro de Usuario" name="Um usuario tenta se logar preenchendo apenas o campo de email" time="9.626">
+<system-out><![CDATA[Dado o usuario acessa o site................................................passed
+Quando clica para fazer login...............................................passed
+E clica para criar nova conta...............................................passed
+E preenche apenas o campo de email..........................................passed
+E tenta se logar............................................................passed
+Entao continua na pagina de cadastro com mensagem de username pass e confirmPass invalidos.passed
+]]></system-out>
+</testcase>
+<testcase classname="Consultar produto pela tela principal, utilizando o campo de pesquisa" name="Consultar um produto ate a tela que mostra o produto" time="10.488">
+<system-out><![CDATA[Dado o usuario abre o site..................................................passed
+Quando acessa a area de pesquisa............................................passed
+E pesquisa um produto.......................................................passed
+Entao o produto e encontrado com sucesso....................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Consultar produto pela tela principal, utilizando o campo de pesquisa" name="Consultar um produto que nao existe" time="28.002">
+<system-out><![CDATA[Dado o usuario abre o site..................................................passed
+Quando acessa a area de pesquisa............................................passed
+E pesquisa um produto que nao existe........................................passed
+Entao o produto nao e encontrado............................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Login de Usuario" name="Login valido" time="8.312">
 <system-out><![CDATA[Dado o usuario entra no site................................................passed
 Quando entra na area de login...............................................passed
 E preenche os dados corretos................................................passed
@@ -8,7 +49,7 @@ E clica para logar..........................................................pass
 Entao login completo........................................................passed
 ]]></system-out>
 </testcase>
-<testcase classname="Login de Usuario" name="_3" time="9.951">
+<testcase classname="Login de Usuario" name="Login invalido" time="7.704">
 <system-out><![CDATA[Dado o usuario entra no site................................................passed
 Quando entra na area de login...............................................passed
 E preenche um dos dados incorretamente......................................passed

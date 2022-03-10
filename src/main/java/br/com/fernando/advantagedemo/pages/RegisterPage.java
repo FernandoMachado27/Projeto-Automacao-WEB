@@ -129,7 +129,7 @@ public class RegisterPage  {
 
 	public void digiteEmail(String email) {
 		Actions action = new Actions(browser);
-		campoUsername.click();
+		wait.until(ExpectedConditions.elementToBeClickable(campoUsername)).click();
 		action.sendKeys(Keys.TAB);
 		campoEmail.sendKeys(email);
 		action.sendKeys(Keys.TAB);

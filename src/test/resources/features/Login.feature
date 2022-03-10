@@ -8,13 +8,13 @@ Funcionalidade: Login de Usuario
 		Quando entra na area de login
 
 	@login_valido
-	Cenario:
+	Cenario: Login valido
 		E preenche os dados corretos 
 		E clica para logar
 		Entao login completo
 		
 	@login_invalido
-	Cenario:
+	Cenario: Login invalido
 		E preenche um dos dados incorretamente
 		E clica para logar
 		Entao nao foi possivel concluir o login 

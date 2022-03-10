@@ -11,10 +11,10 @@ public class TestContext {
 	private PageObjectManager pageObjectManager;
 	private WebDriver browser;
 	
-	public TestContext(){ // instancia objetos
-		webDriverManager = new WebDriverManage(); // o construtor já pega qual browser e environment vou usar
-		browser = webDriverManager.getDriver(); //cria o driver se for nulo, segundo o driver que escolhi no properties
-		pageObjectManager = new PageObjectManager(browser); // inicia o gerenciador de objetos
+	public TestContext(){  // instancia objetos, função dele é pegar todo o contexto do teste
+		webDriverManager = new WebDriverManage();  // o construtor já pega qual browser e environment vou usar
+		browser = webDriverManager.getDriver();  //cria o driver se for nulo, segundo o driver que escolhi no properties
+		pageObjectManager = new PageObjectManager(browser);  // inicia o gerenciador de objetos
 	}
 	
 	public WebDriverManage getWebDriverManager() {

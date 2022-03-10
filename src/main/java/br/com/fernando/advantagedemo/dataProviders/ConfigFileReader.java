@@ -9,13 +9,13 @@ import java.util.Properties;
 import br.com.fernando.advantagedemo.enums.DriverType;
 import br.com.fernando.advantagedemo.enums.EnvironmentType;
 
-public class ConfigFileReader {
+public class ConfigFileReader { // leitor de arquivos config.properties
 	
 	private Properties properties;
 	private final String propertyFilePath= "configs//Configuration.properties";
 
 	
-	public ConfigFileReader(){ // leitor de arquivos config.properties
+	public ConfigFileReader(){ 
 		BufferedReader reader;
 		try {
 			reader = new BufferedReader(new FileReader(propertyFilePath));

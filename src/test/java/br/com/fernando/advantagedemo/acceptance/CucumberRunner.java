@@ -6,7 +6,13 @@ import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(features = "classpath:features", tags = "@login", plugin = { "pretty", "junit:target/cucumber-report/Cucumber.xml", "html:target/cucumber-reports" })
+@CucumberOptions(features = "classpath:features", tags = "@cadastro", plugin = { "pretty",
+		"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:" })
 public class CucumberRunner {
+	
+/* reports:
+ * "junit:target/cucumber-report/Cucumber.xml",
+ * "html:target/cucumber-reports"
+ */
 
 }
